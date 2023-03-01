@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 import Question from './Question';
 import './GameScreen.css';
 
+const controller = new AbortController();
+
 const GameScreen = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [questions, setQuestions] = useState([]);
@@ -19,7 +21,8 @@ const GameScreen = () => {
 			state.difficulty !== 'any' ? `&difficulty=${state.difficulty}` : '';
 		axios
 			.get(
-				`https://opentdb.com/api.php?amount=5&type=multiple${category}${difficulty}`
+				`https://opentdb.com/api.php?amount=5&type=multiple${category}${difficulty}`,
+				{ signal: controller.signal }
 			)
 			.then(response => {
 				setQuestions(response.data.results);
@@ -29,6 +32,7 @@ const GameScreen = () => {
 
 	useEffect(() => {
 		fetchQuestions();
+		return () => controller.abort();
 	}, []);
 
 	return (

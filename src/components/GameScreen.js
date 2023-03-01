@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import Question from './Question';
 import './GameScreen.css';
 
-const controller = new AbortController();
+let controller;
 
 const GameScreen = () => {
 	const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +31,7 @@ const GameScreen = () => {
 	};
 
 	useEffect(() => {
+		controller = new AbortController();
 		fetchQuestions();
 		return () => controller.abort();
 	}, []);

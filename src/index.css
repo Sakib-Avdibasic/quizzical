@@ -1,3 +1,13 @@
+:root {
+  --bg-color: #f2f3fb;
+  --accent-bg-color: #4d5b9e;
+  --color: #293264;
+  --accent-color: #f5f7fb;
+  --blend-in-color: #c7ccf2;
+  --success: #94d7a2;
+  --error: #efc7ca;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,25 +15,77 @@
   font-family: 'Work Sans', sans-serif;
 }
 
-body {
-  max-height: 100vh;
-  width: 100vw;
+#wrapper {
+  min-height: 100vh;
+  max-width: 100%;
+  color: var(--color);
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-#root {
-  width: 100vw;
-  height: 100vh;
-  background-color: #f2f3fb;
+.dark-mode {
+  --bg-color: #060a20;
+  --accent-bg-color: #e8e8ed;
+  --color: #f1f0f0;
+  --accent-color: #101326;
+  --blend-in-color: #2d314a;
+  --success: #0e521c;
+  --error: #79161c;
 }
 
 main {
-  width: 70%;
-  min-height: 100%;
-  margin: auto;
+  margin: 1.5em auto 0;
+  width: 70vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+} 
+
+header {
+  width: 100%;
+  padding: 0.5em 2em 0.5em 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--blend-in-color);
+  font-size: 1em;
+}
+
+header a {
+  display: block;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  text-decoration: none;
+  color: inherit;
+  transition: .2s all;
+}
+
+header a:hover, .active {
+  background-color: var(--color);
+  color: var(--bg-color);
+}
+
+#dark-mode-chooser {
+  position: relative;
+  width: fit-content;
+}
+
+#dark-mode-chooser input {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+#dark-mode-chooser input:focus ~ label {
+  outline: 1px solid black;
 }
 
 button {
@@ -33,14 +95,15 @@ button {
   border-radius: 0.6em;
   font-size: 1.1em;
   text-align: center;
-  background-color: #4d5b9e;
-  color: #f5f7fb;
+  background-color: var(--accent-bg-color);
+  color: var(--accent-color);
   cursor: pointer;
-  transition: .5s all;
+  transition: .3s background-color;
+  min-width: fit-content;
 }
 
 button:hover {
-  background-color: #293264;
+  background-color: var(--color);
 }
 
 .centered {
@@ -48,4 +111,32 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+} 
+
+footer svg {
+  color: var(--color);
+  display: block;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  main {
+    width: 80%;
+    margin-top: 1.2em;
+  }
+  header {
+    font-size: 0.9em;
+  }
+} 
+
+@media (max-width: 768px) {
+  main {
+    width: 90%;
+    margin-top: 0.6em;
+  }
+  button {
+    padding: 0.7em 1.5em;
+    font-size: 1em;
+    border-radius: 0.5em;
+  }
 }

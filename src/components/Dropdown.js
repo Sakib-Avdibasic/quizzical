@@ -1,7 +1,9 @@
 const Dropdown = ({ label, options, setChosenValue }) => {
 	return (
 		<div className="dropdown">
-			<label htmlFor={label}>Choose your {label}</label>
+			<label htmlFor={label} style={{ textTransform: 'capitalize' }}>
+				{label}
+			</label>
 			<select
 				name={label}
 				id={label}

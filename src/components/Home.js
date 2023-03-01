@@ -1,10 +1,5 @@
-import { useEffect, useState } from 'react';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	useNavigate,
-} from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Dropdown from './Dropdown';
 import './Home.css';
 
@@ -43,8 +38,7 @@ const Home = () => {
 	const navigate = useNavigate();
 	return (
 		<section id="welcome-section">
-			<img src="https://purepng.com/public/uploads/large/purepng.com-witcher-geralt-of-riviawitcherthe-witcherandrzej-sapkowskiwriterfantasy-serieswitcher-geralt-of-riviawitchersbooksmonster-hunterssupernaturaldeadly-beastsseriesvideo-gamesxbox-1701528660783gykhu.png"></img>
-			<h1>Geralt of Trivia</h1>
+			<h1>Quizzical</h1>
 			<Dropdown
 				label="category"
 				options={categories}

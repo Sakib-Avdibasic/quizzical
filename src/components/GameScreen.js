@@ -10,15 +10,16 @@ const GameScreen = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [score, setScore] = useState(0);
 	const { state } = useLocation();
-	console.log(state);
 
 	const fetchQuestions = () => {
 		setIsLoading(true);
+		const category =
+			state.category > 0 ? `&category=${+state.category + 8}` : '';
+		const difficulty =
+			state.difficulty !== 'any' ? `&difficulty=${state.difficulty}` : '';
 		axios
 			.get(
-				`https://opentdb.com/api.php?amount=5&type=multiple${
-					state.category > 0 ? `&category=${+state.category + 8}` : ''
-				}${state.difficulty !== 'any' ? `&difficulty=${state.difficulty}` : ''}`
+				`https://opentdb.com/api.php?amount=5&type=multiple${category}${difficulty}`
 			)
 			.then(response => {
 				setQuestions(response.data.results);
@@ -35,11 +36,6 @@ const GameScreen = () => {
 			onSubmit={e => {
 				e.preventDefault();
 				setIsSubmitted(true);
-				const date = new Date();
-				localStorage.setItem(
-					'lastPlayed',
-					`${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
-				);
 			}}
 		>
 			{isLoading ? (
@@ -50,7 +46,7 @@ const GameScreen = () => {
 						<Question
 							key={idx}
 							details={q}
-							questionIdx={idx + 1}
+							questionIdx={idx}
 							isSubmitted={isSubmitted}
 							setScore={setScore}
 						/>

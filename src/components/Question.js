@@ -20,7 +20,7 @@ const Question = ({ details, questionIdx, isSubmitted, setScore }) => {
 	}, [correctAns]);
 
 	useEffect(() => {
-		if (isSubmitted && chosenAns == correctAns) setScore(score => score + 1);
+		if (isSubmitted && chosenAns === correctAns) setScore(score => score + 1);
 	}, [isSubmitted]);
 
 	return (
@@ -50,7 +50,7 @@ const Question = ({ details, questionIdx, isSubmitted, setScore }) => {
 					>
 						<input
 							type="radio"
-							name={`question${questionIdx}`}
+							name={`question${questionIdx + 1}`}
 							id={a}
 							value={a}
 							required

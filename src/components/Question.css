@@ -1,14 +1,14 @@
 .question-area {
   padding: 1.5em 0;
-  border-bottom: 1px solid #dfe1f1;
+  border-bottom: 1px solid var(--blend-in-color);
 }
 
 .question-area.correct {
-  border-bottom: 1px solid #94d7a2;
+  border-bottom: 1px solid var(--success);
 }
 
 .question-area.incorrect {
-  border-bottom: 1px solid #efc7ca;
+  border-bottom: 1px solid var(--error);
 }
 
 .question-area h2 {
@@ -16,7 +16,6 @@
   letter-spacing: 0.05em;
   line-height: 1.2em;
   font-weight: 600;
-  color: #293264;
   margin-bottom: 1em;
 }
 
@@ -28,7 +27,6 @@
 .answers div {
   position: relative;
   min-width: 7em;
-  color: #293264;
   font-size: 0.9em;
   font-weight: 500;
   text-align: center;
@@ -45,32 +43,58 @@ input[type="radio"] {
   display: block;
   width: 100%;
   padding: 0.5em 0.7em;
-  border: 1px solid #6a76ae;
+  border: 1px solid var(--blend-in-color);
   border-radius: 0.8em;
-  transition: .5s all;
+  transition: .5s background-color;
 }
 
-input:focus ~ label, input:hover ~ label {
-  background-color: #d6dbf5;
+input[type="radio"]:enabled:focus ~ label, input[type="radio"]:enabled:hover ~ label {
+  background-color: var(--blend-in-color);
 }
 
 .answers div.selected > label {
-  background-color: #d6dbf5;
+  background-color: var(--blend-in-color);;
   font-weight: 600;
 }
 
 .answers div.correct > label {
-  background-color: #94d7a2;
+  background-color:var(--success);
 }
 
 .answers div.incorrect > label {
-  background-color: #efc7ca;
+  background-color: var(--error);
 }
 
 .answers div.not-selected {
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .answer div.selected > label, .answers div.correct > label, .answers div.incorrect > label {
     border: 1px solid transparent;
+}
+
+@media (max-width: 768px) {
+  .question-area {
+    padding: 1em 0;
+  }
+
+  .question-area h2 {
+    font-size: 1em;
+    margin-bottom: 0.7em;
+  }
+
+  .answers {
+    gap: 0.5em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .answers div {
+    font-size: 0.8em;
+    width: 45%;
+  }
+
+  .answers label {
+      padding: 0.3em 0.5em;
+  }
 }

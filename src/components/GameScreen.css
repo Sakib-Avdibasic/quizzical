@@ -1,3 +1,7 @@
+form {
+  width: 100%;
+}
+
 #result-area {
   display: flex;
   justify-content: center;
@@ -8,15 +12,14 @@
 
 #result-area p {
   font-size: 1.15em;
-  font-weight: bold;
-  color: #293264;
+  color: var(--color);
   animation: fadeIn .5s;
 }
 
 #loader {
   width: 3em;
   height: 3em;
-  border: 4px solid #404a7f;
+  border: 4px solid var(--accent-bg-color);
   border-left: 4px solid transparent;
   border-radius: 50%;
   animation: spin .75s infinite ease-in-out;
@@ -39,5 +42,15 @@
 
   to {
     opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  #result-area {
+    padding-top: 1em;
+    flex-direction: column;
+  }
+  #result-area p {
+    font-size: 1em;
   }
 }

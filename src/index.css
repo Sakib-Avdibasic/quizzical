@@ -22,7 +22,6 @@
   background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .dark-mode {
@@ -113,6 +112,10 @@ button:hover {
   transform: translate(-50%, -50%);
 } 
 
+footer {
+  margin-top: auto;
+}
+
 footer svg {
   color: var(--color);
   display: block;
@@ -132,7 +135,6 @@ footer svg {
 @media (max-width: 768px) {
   main {
     width: 90%;
-    margin-top: 0.6em;
   }
   button {
     padding: 0.7em 1.5em;

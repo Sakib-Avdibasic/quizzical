@@ -1,0 +1,76 @@
+.question-area {
+  padding: 1.5em 0;
+  border-bottom: 1px solid #dfe1f1;
+}
+
+.question-area.correct {
+  border-bottom: 1px solid #94d7a2;
+}
+
+.question-area.incorrect {
+  border-bottom: 1px solid #efc7ca;
+}
+
+.question-area h2 {
+  font-size: 1.25em;
+  letter-spacing: 0.05em;
+  line-height: 1.2em;
+  font-weight: 600;
+  color: #293264;
+  margin-bottom: 1em;
+}
+
+.answers {
+  display: flex;
+  gap: 0.8em;
+}
+
+.answers div {
+  position: relative;
+  min-width: 7em;
+  color: #293264;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-align: center;
+}
+
+input[type="radio"] {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.answers label {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0.7em;
+  border: 1px solid #6a76ae;
+  border-radius: 0.8em;
+  transition: .5s all;
+}
+
+input:focus ~ label, input:hover ~ label {
+  background-color: #d6dbf5;
+}
+
+.answers div.selected > label {
+  background-color: #d6dbf5;
+  font-weight: 600;
+}
+
+.answers div.correct > label {
+  background-color: #94d7a2;
+}
+
+.answers div.incorrect > label {
+  background-color: #efc7ca;
+}
+
+.answers div.not-selected {
+  opacity: 0.6;
+}
+
+.answer div.selected > label, .answers div.correct > label, .answers div.incorrect > label {
+    border: 1px solid transparent;
+}

@@ -1,0 +1,43 @@
+#welcome-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #293264;
+}
+
+#welcome-section h1 {
+  margin-bottom: 0.5em;
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+#welcome-section img {
+  height: 30vh;
+  margin-bottom: 1em;
+}
+.dropdown {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+}
+
+.dropdown label {
+  margin-bottom: 0.3em;
+  font-style: italic;
+}
+
+.dropdown select {
+  padding: 0.5em 0;
+  font-size: 1em;
+  text-transform: capitalize;
+  border: none;
+  border-bottom: 1px solid #293264;
+  color: #293264;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#welcome-section button {
+  width: 100%;
+}

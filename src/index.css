@@ -97,12 +97,17 @@ button {
   background-color: var(--accent-bg-color);
   color: var(--accent-color);
   cursor: pointer;
-  transition: .3s background-color;
+  transition: .3s all;
   min-width: fit-content;
 }
 
-button:hover {
+button:enabled:hover {
   background-color: var(--color);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .centered {

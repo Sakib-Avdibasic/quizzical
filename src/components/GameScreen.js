@@ -9,9 +9,27 @@ let controller;
 const GameScreen = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [questions, setQuestions] = useState([]);
+	const [chosenAnswers, setChosenAnswers] = useState({});
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [score, setScore] = useState(0);
 	const { state } = useLocation();
+
+	const handleChange = e => {
+		const questionIdx = +e.target.name.slice(-1);
+		setChosenAnswers(chosenAnswers => {
+			return { ...chosenAnswers, [questionIdx]: e.target.value };
+		});
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		setIsSubmitted(true);
+		let cnt = 0;
+		for (const [questionIdx, answer] of Object.entries(chosenAnswers)) {
+			if (answer === questions[questionIdx].correct_answer) cnt++;
+		}
+		setScore(cnt);
+	};
 
 	const fetchQuestions = () => {
 		setIsLoading(true);
@@ -37,23 +55,18 @@ const GameScreen = () => {
 	}, []);
 
 	return (
-		<form
-			onSubmit={e => {
-				e.preventDefault();
-				setIsSubmitted(true);
-			}}
-		>
+		<form onChange={handleChange} onSubmit={handleSubmit}>
 			{isLoading ? (
 				<i id="loader" className="centered" />
 			) : (
 				<>
-					{questions.map((q, idx) => (
+					{questions.map((question, idx) => (
 						<Question
 							key={idx}
-							details={q}
+							details={question}
 							questionIdx={idx}
+							chosenAnswer={chosenAnswers[idx]}
 							isSubmitted={isSubmitted}
-							setScore={setScore}
 						/>
 					))}
 					<section id="result-area">
@@ -65,14 +78,19 @@ const GameScreen = () => {
 									onClick={e => {
 										fetchQuestions();
 										setIsSubmitted(false);
-										setScore(0);
+										setChosenAnswers({});
 									}}
 								>
 									Play again
 								</button>
 							</>
 						) : (
-							<button type="submit">Check answers</button>
+							<button
+								type="submit"
+								disabled={Object.keys(chosenAnswers).length !== 5}
+							>
+								Check answers
+							</button>
 						)}
 					</section>
 				</>

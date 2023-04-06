@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Question from './Question';
 import './GameScreen.css';
 
@@ -13,6 +13,17 @@ const GameScreen = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [score, setScore] = useState(0);
 	const { state } = useLocation();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		// if no question category and/or difficulty is set
+		if (state === null) {
+			return navigate('/');
+		}
+		controller = new AbortController();
+		fetchQuestions();
+		return () => controller.abort();
+	}, []);
 
 	const handleChange = e => {
 		const questionIdx = +e.target.name.slice(-1);
@@ -47,12 +58,6 @@ const GameScreen = () => {
 				setIsLoading(false);
 			});
 	};
-
-	useEffect(() => {
-		controller = new AbortController();
-		fetchQuestions();
-		return () => controller.abort();
-	}, []);
 
 	return (
 		<form onChange={handleChange} onSubmit={handleSubmit}>
